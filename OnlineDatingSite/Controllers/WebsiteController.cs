@@ -20,7 +20,7 @@ namespace OnlineDatingSite.Controllers
         }
         public IActionResult Login(string username, string password)
         {
-            //簡易登入系統
+            //簡易的登入系統
             LoginModel user = new LoginModel();
             if (user.Login(username, password))
             {
