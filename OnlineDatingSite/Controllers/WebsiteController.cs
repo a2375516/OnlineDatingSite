@@ -65,7 +65,7 @@ namespace OnlineDatingSite.Controllers
             try
             {
                 string username = "";
-                if (HttpContext.Session.Keys.Contains("Online"))//判斷是哪位使用者
+                if (HttpContext.Session.Keys.Contains("Online"))//使用Session判斷是哪位使用者
                 {
                     username = HttpContext.Session.GetString("Online");
                 }
