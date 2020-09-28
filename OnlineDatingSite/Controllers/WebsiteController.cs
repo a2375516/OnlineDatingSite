@@ -70,7 +70,7 @@ namespace OnlineDatingSite.Controllers
                     username = HttpContext.Session.GetString("Online");
                 }
             
-                SInformationModel sInformationModel = new SInformationModel();//連接資料庫
+                SInformationModel sInformationModel = new SInformationModel();//連接到資料庫
                 //顯示資料
                 sInformationModel.Select(username);//搜尋個人資料
                 sInformationModel.SelectList();//搜尋興趣清單
