@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "AlterAlbum";
+}
+@model OnlineDatingSite.Models.SInformationModel;
+
+<!DOCTYPE html>
+<html>
+<br>
+<br>
+<br>
+<head>
+    <h1 style="text-align: center;font-size:60px;">照片集</h1>
+    <br>
+    <style>
+
+        table {
+            border-spacing: 20px;
+            border: 1px solid black;
+        }
+
+            table.center {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        tr, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <form action="\Website\AlterAlbum" method="post" style="text-align:center" enctype="multipart/form-data">
+
+        <img src="~/image/@ViewData["album"]" height="180" width="178"><br />
+
+        <input type="file" name="album" multiple /><br />
+        <input type="submit" value="變更">
+
+
+    </form>
+</body>
+</html>

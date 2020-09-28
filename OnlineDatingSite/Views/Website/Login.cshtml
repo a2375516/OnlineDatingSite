@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+@model OnlineDatingSite.Models.LoginModel;
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="text-center">
+        <form action="/Website/Login" method="post">
+            <label for="username">帳號:</label><br>
+            <input type="text" id="username" name="username"><br>
+            <label for="password">密碼:</label><br>
+            <input type="text" id="password" name="password"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</body>
+</html>

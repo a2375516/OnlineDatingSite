@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewData["Title"] = "AltPersonalInformation";
+}
+@model OnlineDatingSite.Models.SInformationModel;
+@{
+    List<string> InterestList = ViewBag.InterestList;
+    string interest = ViewData["interest"].ToString();
+    string[] allinterest = interest.Split(new Char[] {','});
+}
+
+<!DOCTYPE html>
+<html>
+<br>
+<br>
+<br>
+<head>
+    <h1 style="text-align: center;font-size:60px;">個人資訊</h1>
+    <br>
+    <style>
+        table {
+            border-spacing: 20px;
+            border: 1px solid black;
+        }
+
+            table.center {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+        tr, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+
+<body>
+    <form action="AlterInformation" style="text-align: center" method="post" enctype="multipart/form-data" name="ALL">
+
+        <img src="~/image/@ViewData["personalphoto"]" height="180" width="178"><br>
+        <label for="pic" style="color:Tomato;">接受的圖片格式:jpg</label><br>
+        <input type="file" name="pic"><br>
+
+        <table class="center">
+            <tr>
+                <td><label for="name"> 姓名</label></td>
+                <td><label>@ViewData["name"]</label></td>
+            </tr>
+
+            <tr>
+                <td><label for="password"> 密碼</label></td>
+                <td><input type="button" name="alterpassword" onclick="location.href='/Website/AlterPassword'" value="修改密碼" /></td>
+            </tr>
+            <tr>
+                <td><label for="nickname">暱稱</label></td>
+                <td><input type="text" id="nickname" name="nickname" value="@ViewData["nickname"]"></td>
+            </tr>
+            <tr>
+                <td><label for="sex">性別</label></td>
+                <td><label>@ViewData["sex"]</label></td>
+            </tr>
+            <tr>
+                <td><label for="address">居住地</label></td>
+                <td>
+                    <select name="address" id="address">
+                        <option value="@ViewData["address"]" selected="selected">@ViewData["address"]</option>
+                        <option value="臺北市">臺北市</option>
+                        <option value="新北市">新北市</option>
+                        <option value="桃園市">桃園市</option>
+                        <option value="臺中市">臺中市</option>
+                        <option value="臺南市">臺南市</option>
+                        <option value="高雄市">高雄市</option>
+                        <option value="基隆市">基隆市</option>
+                        <option value="新竹市">新竹市</option>
+                        <option value="嘉義市">嘉義市</option>
+                        <option value="新竹縣">新竹縣</option>
+                        <option value="苗栗縣">苗栗縣</option>
+                        <option value="彰化縣">彰化縣</option>
+                        <option value="南投縣">南投縣</option>
+                        <option value="雲林縣">雲林縣</option>
+                        <option value="嘉義縣">嘉義縣</option>
+                        <option value="宜蘭縣">宜蘭縣</option>
+                        <option value="花蓮縣">花蓮縣</option>
+                        <option value="臺東縣">臺東縣</option>
+                        <option value="澎湖縣">澎湖縣</option>
+                        <option value="連江縣">連江縣</option>
+                        <option value="金門縣">金門縣</option>
+                        <option value="屏東縣">屏東縣</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="birth">生日</label></td>
+                <td><label>@ViewData["birth"]</label></td>
+            </tr>
+            <tr>
+                <td><label for="email">信箱</label></td>
+                <td><label>@ViewData["email"]</label></td>
+
+            </tr>
+            <tr>
+                <td><label for="job">工作</label></td>
+                <td><input type="text" id="job" name="job" value="@ViewData["job"]"></td>
+
+            </tr>
+            <tr>
+                <td><label for="interest">興趣</label></td>
+                <td>
+                    @{
+                        for (int i = 0; i < InterestList.Count; i++)
+                        {
+                            string A = "";
+                            for (int j = 0; j < allinterest.Length; j++)
+                            {
+                                if (allinterest[j] == InterestList[i])
+                                    A = "checked";
+                            }
+                            <input type="checkbox" name="interest" value="@InterestList[i]" @A /><label for="@InterestList[i]">@InterestList[i]</label>
+                            if (i != 0&&i % 4 == 0)
+                            {
+                                <br>
+                            }
+                            
+                        }
+                        <br /><label>興趣最多五個</label>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td><label for="resume">簡述</label></td>
+                <td><textarea name="resume" id="resume" style="resize:none" rows="6" cols="40">@ViewData["resume"]</textarea></td>
+            </tr>
+
+        </table>
+        <label style="color:Tomato;">@ViewData["errorinterest"]</label><br>
+        <input type="submit" value="確認修改資料">
+    </form>
+    <!--預覽圖片-->
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        $('input:file').on('change', function (e) {
+            const file = this.files[0];
+
+            const fr = new FileReader();
+            fr.onload = function (e) {
+                $('img').attr('src', e.target.result);
+            };
+
+            // 使用 readAsDataURL 將圖片轉成 Base64
+            fr.readAsDataURL(file);
+        });
+    </script>
+
+
+</body>
+</html>
+
